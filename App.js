@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import {Provider} from "react-redux";
 import {store} from "./store";
+import GameStartScreen from "./screens/GameStartScreen";
 
 export default function App() {
     const Stack = createNativeStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
                     >
                         <Stack.Navigator>
                             <Stack.Screen name='Home Screen' options={{headerShown:false}} component={HomeScreen}/>
+                            <Stack.Screen name='Game Screen' options={{headerShown:false}} component={GameStartScreen}/>
                         </Stack.Navigator>
                     </KeyboardAvoidingView>
                 </SafeAreaProvider>

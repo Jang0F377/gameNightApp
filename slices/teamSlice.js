@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    numberOfTeams:0,
+    numberOfTeams:2,
 }
 
 export const teamSlice = createSlice({
@@ -14,10 +14,13 @@ export const teamSlice = createSlice({
         decrementTeams: state => {
             state.numberOfTeams--;
         },
+        setNumberOfTeams: (state, action) => {
+            state.numberOfTeams = action.payload + 1
+        }
     },
 });
 
-export const {incrementTeams,decrementTeams} = teamSlice.actions;
+export const {incrementTeams,decrementTeams, setNumberOfTeams} = teamSlice.actions;
 
 //Selectors
 export const selectNumberOfTeams = (state) => state.myReducers.team.numberOfTeams;
