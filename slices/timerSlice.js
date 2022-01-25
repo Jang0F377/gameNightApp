@@ -18,6 +18,8 @@ export const timerSlice = createSlice({
         decrementTimer: state => {
             state.timerStart -= 15;
         },
+
+
     },
 });
 

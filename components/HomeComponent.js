@@ -3,7 +3,13 @@ import tw from 'twrnc';
 import {ScrollView, Text, TextInput, View} from "react-native";
 import {Button, Icon, Tooltip} from "react-native-elements";
 import {useDispatch, useSelector} from "react-redux";
-import {decrementTeams, incrementTeams, selectNumberOfTeams, setNumberOfTeams} from "../slices/teamSlice";
+import {
+    decrementTeams,
+    incrementTeams,
+    initializeTeamsArray, selectFinalNumberOfTeams,
+    selectNumberOfTeams,
+    setNumberOfTeams
+} from "../slices/teamSlice";
 import {decrementTimer, incrementTimer, selectTimer, setTimer} from "../slices/timerSlice";
 import {useNavigation} from "@react-navigation/native";
 
@@ -17,7 +23,7 @@ const HomeComponent = () => {
     const dispatch = useDispatch();
 
     return(
-        <ScrollView style={tw`flex-1`}>
+        <ScrollView style={tw`flex-1`} on>
             <ChooseNumberOfTeams/>
             <ChoseTimer/>
             {teams > 0 && timer >= 0 && (
@@ -40,8 +46,9 @@ const HomeComponent = () => {
                     onPress={() => {
                         dispatch(setNumberOfTeams(teams));
                         dispatch(setTimer(timer));
-                        console.log(timer,teams)
+                        dispatch(initializeTeamsArray());
                         navigation.navigate('Game Screen')
+
                     }}
                     title='Begin Game' />
         </ScrollView>
@@ -69,7 +76,10 @@ const ChoseTimer = () => {
                 />
                 <Text style={tw`p-5 pt-6 border-2 text-5xl text-center`} keyboardType='numeric'>
                     {timer}
+                    <Text style={tw`text-center text-base`}>seconds</Text>
+
                 </Text>
+
                 <Icon
                     disabled={timer === 120}
                     name='play-forward-circle-outline'
@@ -80,7 +90,14 @@ const ChoseTimer = () => {
                     }}
                 />
             </View>
-            <Text style={tw`text-center text-base mb-1`}>seconds</Text>
+
+            {timer > 116 ?
+                <View style={tw`flex flex-col`}>
+                    <Text style={tw`text-base font-semibold text-center`}>
+                        Max amount of time is 120 seconds
+                    </Text>
+                </View> : <View/>
+            }
 
         </View>
 
@@ -109,15 +126,22 @@ const ChooseNumberOfTeams = () => {
                     {teams}
                 </Text>
                 <Icon
+                    disabled={teams > 15}
                     name='add-circle-outline'
                     type='ionicon'
                     style={tw`w-10 m-2 my-auto`} size={33}
                     onPress={() => {
                         dispatch(incrementTeams());
                     }}
-
                 />
             </View>
+            {teams > 15 ?
+                <View style={tw`flex flex-col`}>
+                    <Text style={tw`text-base font-semibold text-center`}>
+                        Max Number of players is 16
+                    </Text>
+                </View> : <View/>
+            }
         </View>
     );
 };
