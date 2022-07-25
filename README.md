@@ -2,8 +2,8 @@
   React Native application I built because our family has a lot of game nights and we are always missing a timer 
   and/or scoreboard so we usually make some makeshift scorecard and someone will use the clock or a timer on their phone.
   I wanted to solve that and keep it in one central location. Your met with the first screen which asks you to choose 
-    * how many players
-    * how much time on the clock 
+    a) how many players
+    b) how much time on the clock 
   You then press the "Begin Game" button and it will take you to the game screen where you will have the clock,
   with functionality to pause/play and reset. Below that the scoreboard and below that, finally, we have the component
   to add or subtract to the score of each team. At the bottom there is an "End Game" button that will reset state and take
