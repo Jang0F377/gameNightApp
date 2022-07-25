@@ -18,12 +18,15 @@ export const timerSlice = createSlice({
         decrementTimer: state => {
             state.timerStart -= 15;
         },
+        timerGameOver: (state, action) => {
+            return initialState;
+        }
 
 
     },
 });
 
-export const { setTimer,incrementTimer,decrementTimer} = timerSlice.actions;
+export const { setTimer,incrementTimer,decrementTimer,timerGameOver} = timerSlice.actions;
 
 export const selectTimer = (state) => state.myReducers.timer.timerStart
 

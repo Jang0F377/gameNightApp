@@ -14,7 +14,7 @@ export const teamSlice = createSlice({
             const teamLen = state.finalNumberOfTeams + 1;
             for (let i=0;i<teamLen;i++) {
                 state.teamsArray.push({
-                    team: i,
+                    team: i ,
                     score:0,
                 })
             }
@@ -26,13 +26,33 @@ export const teamSlice = createSlice({
         decrementTeams: state => {
             state.numberOfTeams--;
         },
-        setNumberOfTeams: (state) => {
+        setNumberOfTeams: state => {
             state.finalNumberOfTeams = state.numberOfTeams;
+        },
+        increaseTeamPoint: (state, action) => {
+            let newTeamsArr = [...state.teamsArray];
+            newTeamsArr[action.payload.name - 1].score++;
+            state.teamsArray = newTeamsArr;
+        },
+        decreaseTeamPoint: (state, action) => {
+            let newTeamsArr = [...state.teamsArray];
+            newTeamsArr[action.payload.name -1].score--;
+            state.teamsArray = newTeamsArr;
+        },
+        gameOver: (state, action) => {
+            return initialState
         }
     },
 });
 
-export const {incrementTeams,decrementTeams, setNumberOfTeams, initializeTeamsArray} = teamSlice.actions;
+export const {incrementTeams,
+    decrementTeams,
+    setNumberOfTeams,
+    initializeTeamsArray,
+    increaseTeamPoint,
+    decreaseTeamPoint,
+    gameOver,
+} = teamSlice.actions;
 
 //Selectors
 export const selectNumberOfTeams = (state) => state.myReducers.team.numberOfTeams;

@@ -20,7 +20,7 @@ const TimerComponent = () => {
     const renderTime = ({ remainingTime }) => {
         if (remainingTime === 0) {
             return (
-                <View >
+                <View style={{backgroundColor:'#919ea4'}}>
                     <Text style={tw`text-center text-3xl text-red-600`}>Times Up!</Text>
                 </View>
             );
@@ -42,16 +42,17 @@ const TimerComponent = () => {
     };
 
     return(
-        <View style={[tw`flex-1 p-2 m-2 justify-center bg-white rounded-lg`,{backgroundColor:'#D3D3D3'}]}>
-            <View>
-                <Text style={tw`text-center p-1 m-1 underline text-3xl tracking-wide`}>Father Time</Text>
+        <View style={[tw`flex-1 p-2 m-2 justify-center bg-white rounded-lg`,{backgroundColor:'#475f69'}]}>
+            <View style={tw`mb-2 m-1`}>
+                <Text style={tw`text-center p-1 underline text-3xl tracking-wide`}>Father Time</Text>
             </View>
-            <View style={tw`mx-auto p-1`}>
+            <View style={[tw`mx-auto p-1 rounded-full`, {backgroundColor:'#919ea4'}]}>
                 <CountdownCircleTimer
                     key={key}
                     isPlaying={isPlaying}
                     duration={time}
-                    colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+                    colors={['#232f3A', '#F7B801', '#A30000', '#A30000']}
+                    colorsTime={[8, 5, 2, 0]}
                 >
                     {renderTime}
                 </CountdownCircleTimer>
@@ -60,6 +61,7 @@ const TimerComponent = () => {
                 <TouchableOpacity>
                     <Icon
                         name='pause-circle-outline'
+                        color='#919ea4'
                         style={tw`p-2 m-1`}
                         type='ionicon' size={70}
                         onPress={pauseTimer}
@@ -68,6 +70,7 @@ const TimerComponent = () => {
                 <TouchableOpacity>
                     <Icon
                         style={tw`p-2 m-1`}
+                        color='#919ea4'
                         name='refresh-circle-outline'
                         type='ionicon'
                         size={70}
@@ -80,6 +83,7 @@ const TimerComponent = () => {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Icon
+                        color='#919ea4'
                         name='play-circle-outline'
                         style={tw`p-2 m-1`}
                         type='ionicon' size={70}

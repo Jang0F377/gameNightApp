@@ -23,25 +23,13 @@ const HomeComponent = () => {
     const dispatch = useDispatch();
 
     return(
-        <ScrollView style={tw`flex-1`} on>
+        <ScrollView style={tw`flex-1 mt-2`} on>
             <ChooseNumberOfTeams/>
             <ChoseTimer/>
-            {teams > 0 && timer >= 0 && (
-                <View>
-                    <Text style={tw`text-center font-semibold text-lg p-1 mt-2 `}>
-                        You have selected {teams} teams/players
-                    </Text>
-                    <Text style={tw`text-center font-semibold text-lg `}>
-                        &
-                    </Text>
-                    <Text style={tw`text-center font-semibold text-lg p-1 mb-2 `}>
-                        {timer > 0 ? `${timer} second timer per team` : `no timer will be given`}
-                    </Text>
-                </View>
-            )}
 
-            <Button style={[tw`p-5 mx-auto w-40 ${!teams && 'opacity-20'}`]}
-                    disabled={!teams}
+
+            <Button style={[tw`p-6 mx-auto mt-4 ${teams < 2 && 'opacity-20'}`]}
+                    disabled={teams < 2}
                     buttonStyle={{backgroundColor: 'rgba(78,116,289,1)'}}
                     onPress={() => {
                         dispatch(setNumberOfTeams(teams));
@@ -50,7 +38,9 @@ const HomeComponent = () => {
                         navigation.navigate('Game Screen')
 
                     }}
-                    title='Begin Game' />
+                    title='Begin Game'
+                    titleStyle={tw`text-xl tracking-wide`}
+            />
         </ScrollView>
     );
 }
@@ -62,7 +52,7 @@ const ChoseTimer = () => {
     const dispatch = useDispatch();
 
     return(
-        <View style={[tw`p-1 mx-10 my-4 rounded-lg`,{backgroundColor:'#D3D3D3'}]}>
+        <View style={[tw`p-1 rounded-md m-4`,{backgroundColor:'#919ea4'}]}>
             <Text style={tw`text-3xl underline mx-auto`}>Set the Timer</Text>
             <View style={tw`flex flex-row mx-auto mt-9 mb-3`}>
                 <Icon
@@ -110,7 +100,7 @@ const ChooseNumberOfTeams = () => {
     const dispatch = useDispatch();
 
     return (
-        <View style={[tw`p-1 rounded-md m-4 mt-1 `, {backgroundColor:'#B87333'}]}>
+        <View style={[tw`p-1 rounded-md m-4 `, {backgroundColor:'#9b502e'}]}>
             <Text style={tw`text-3xl mx-auto underline`}>Number of Teams/Players</Text>
             <View style={tw`flex flex-row mx-auto mt-9 mb-3`}>
                 <Icon

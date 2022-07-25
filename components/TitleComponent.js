@@ -6,18 +6,18 @@ import {Icon} from "react-native-elements";
 
 const TitleComponent = () => {
     return(
-        <View style={tw`p-4`}>
+        <View style={tw`pb-8 p-4 mx-4 `}>
             <View style={tw`flex flex-row justify-between`}>
                 <Text style={tw`text-4xl font-extrabold tracking-wider`}>
-                    Teaster's
+                    Game Night
                 </Text>
                 <Icon
                     name='dice'
-                    style={tw`w-20`}
-                    type='font-awesome-5' size={40}/>
+                    style={tw`w-25 my-auto`}
+                    type='font-awesome-5' size={35}/>
             </View>
             <View style={tw`border-b`}>
-                <Text style={tw`text-3xl font-semibold tracking-wide mb-2`}>
+                <Text style={tw`text-4xl font-semibold tracking-wider mb-4`}>
                     Party App
                 </Text>
             </View>

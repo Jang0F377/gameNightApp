@@ -1,16 +1,33 @@
 import React from "react";
-import {SafeAreaView, ScrollView, Text, View} from "react-native";
+import {Button, SafeAreaView, ScrollView, Text, View} from "react-native";
 import tw from'twrnc';
 import ScoreboardComponent from "../components/ScoreboardComponent";
 import AdjustScoreComponent from "../components/AdjustScoreComponent";
+import TimerComponent from "../components/TimerComponent";
+import {useNavigation} from "@react-navigation/native";
+import {useDispatch} from "react-redux";
+import {gameOver} from "../slices/teamSlice";
+import {timerGameOver} from "../slices/timerSlice";
 
 const GameStartScreen = () => {
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
     return(
-        <SafeAreaView style={[tw`h-full`, {backgroundColor: '#42566A'}]}>
+        <SafeAreaView style={[tw`flex-1`, {backgroundColor: '#232f3A'}]}>
             <ScrollView>
-                <Text style={tw`text-center text-3xl tracking-wide underline mt-2`}>Team Scores</Text>
+                <TimerComponent/>
                 <ScoreboardComponent/>
                 <AdjustScoreComponent/>
+                <Button color={"#f194ff"}
+
+                        title={"End Game"}
+                        onPress={() => {
+                            dispatch(gameOver());
+                            dispatch(timerGameOver());
+                            navigation.navigate('Home Screen');
+                        }}
+
+                />
             </ScrollView>
         </SafeAreaView>
     );
